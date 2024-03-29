@@ -1,11 +1,12 @@
+import { Field, Form, Formik } from "formik";
 
-
-function SearchBar() {
+function SearchBar({  }) {
   return (
-    <div>
-      
-    </div>
-  )
+    <header>
+  
+    </header>
+  );
 }
 
-export default SearchBar
+export default SearchBar;
+

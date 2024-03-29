@@ -6,14 +6,16 @@ import SearchBar from "../SearchBar/SearchBar"
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn"
 
 
+
 function App() {
   return (
     <>
+    <SearchBar/>
     <ImageModal />
     {/* <ErrorMessage  /> */}
     <Loader />
     <ImageGallery />
-    <SearchBar />
+    
     <LoadMoreBtn />
 
     </>

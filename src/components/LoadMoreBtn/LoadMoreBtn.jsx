@@ -1,10 +1,5 @@
-
 function LoadMoreBtn() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <></>;
 }
 
-export default LoadMoreBtn
+export default LoadMoreBtn;

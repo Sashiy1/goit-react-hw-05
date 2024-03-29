@@ -1,11 +1,5 @@
-
-
 function ImageModal() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <></>;
 }
 
-export default ImageModal
+export default ImageModal;

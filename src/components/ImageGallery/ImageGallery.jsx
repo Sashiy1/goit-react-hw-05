@@ -2,10 +2,17 @@ import ImageCard from "../ImageCard/ImageCard"
 
 
 function ImageGallery() {
+
+  
+
+
   return (
-    <div>
+
+      <ul>
       <ImageCard/>
-    </div>
+      </ul>
+      
+   
   )
 }
 
