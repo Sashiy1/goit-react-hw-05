@@ -1,7 +1,10 @@
-.header {
+.loaderContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    height: 100vh;
 }
+
+
+
+
