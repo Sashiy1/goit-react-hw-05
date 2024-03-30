@@ -4,7 +4,7 @@
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: gray;
+  
   width: 1244px;
 }
 .formInput {
@@ -40,4 +40,9 @@
 .formButton:focus {
     border-color: #4d4d4d;
     box-shadow: 0 0 5px #4d4d4d;
+}
+
+.ErrorMessage {
+  color: #333;
+  margin-left: 12px;
 }

@@ -3,7 +3,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    background-color: gray;
+  
    padding-left: 10px;
    padding-right: 10px;
+}
+
+.galleryItemDesc {
+    padding: 4px 10px;
+    display: flex;
+    justify-content: space-between;
 }

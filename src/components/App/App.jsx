@@ -4,25 +4,28 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import { useEffect, useState } from "react";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 import { fetchPhotoByQuery } from "../services/api";
+import Error from "../Error/Error";
 
 function App() {
-  const [photos, setPhotos] = useState(null);
+  const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (!searchQuery) return; 
-    async function fetchData(query) {
+    if (!searchQuery) return;
+
+    console.log(photos)
+
+    async function fetchData(query, pageNum) {
       try {
         setIsLoading(true);
         setIsError(false);
-
-        const data = await fetchPhotoByQuery(query); 
-
-        setPhotos(data.results);
+        const data = await fetchPhotoByQuery(query, pageNum);
+        setPhotos(prevPhotos => [...prevPhotos, ...data.results]);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -30,24 +33,31 @@ function App() {
         setIsLoading(false);
       }
     }
-    fetchData(searchQuery); // 
-  }, [searchQuery]);
-  
+    
 
-  const handleSearch = (query) => {
-    setSearchQuery(query); 
+    fetchData(searchQuery, page);
+  }, [searchQuery, page, ]);
+
+  const handleSearch = query => {
+    setSearchQuery(query);
+    setPage(1); 
+    setPhotos([]); // Reset photos state to clear previous search results
   };
 
+  const handleLoadPhotos = () => {
+    setPage(prevPage => prevPage + 1); // Increment page number
+    fetchData(searchQuery, page + 1); // Fetch data for the next page
+  };
 
   return (
     <>
-      <SearchBar onSubmit={handleSearch}  /> 
-      {/* <ImageModal /> */}
-      {isError && <ErrorMessage />}
-      {isLoading && <Loader />}
-      <ImageGallery photos={photos} />
+      <SearchBar onSubmit={handleSearch} />
+      {isError && <Error />}
 
-      {/* <LoadMoreBtn /> */}
+      <ImageGallery photos={photos} />
+      {isLoading && <Loader />}
+      {photos.length > 0 &&  <LoadMoreBtn  handleLoadPhotos={handleLoadPhotos} />}
+     
     </>
   );
 }

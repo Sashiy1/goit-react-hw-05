@@ -2,9 +2,9 @@ import { GrInstagram } from "react-icons/gr";
 import css from "./ImageCard.module.css";
 
 function ImageCard({ photo }) {
-  // console.log(photo);
+  
   return (
-    <li className={css.galleryItem} key={photo.id}>
+   
       <div>
         <img
           src={photo.urls.small}
@@ -21,7 +21,7 @@ function ImageCard({ photo }) {
           </a>
         </div>
       </div>
-    </li>
+   
   );
 }
 

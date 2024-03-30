@@ -1,4 +1,4 @@
-function ErrorMessage({ message = "" }) {
+function Error({ message = "" }) {
   return (
     <p>
       {message.length > 0
@@ -8,4 +8,4 @@ function ErrorMessage({ message = "" }) {
   );
 }
 
-export default ErrorMessage;
+export default Error;
