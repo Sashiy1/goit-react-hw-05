@@ -1,6 +1,9 @@
 .gallery {
-    max-width: 1224px;
+    max-width: 1244px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    background-color: gray;
+   padding-left: 10px;
+   padding-right: 10px;
 }
