@@ -17,7 +17,7 @@ function ImageCard({ photo }) {
           <a
             href={`https://www.instagram.com/${photo.user.instagram_username}/`}
           >
-            <GrInstagram />
+            <GrInstagram className={css.cardSVG}  />
           </a>
         </div>
       </div>

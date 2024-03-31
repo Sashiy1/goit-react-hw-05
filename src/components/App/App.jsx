@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     if (!searchQuery) return;
 
-    console.log(photos)
+    
 
     async function fetchData(query, pageNum) {
       try {
@@ -36,7 +36,7 @@ function App() {
     
 
     fetchData(searchQuery, page);
-  }, [searchQuery, page, ]);
+  }, [searchQuery, page]);
 
   const handleSearch = query => {
     setSearchQuery(query);
@@ -44,9 +44,9 @@ function App() {
     setPhotos([]); // Reset photos state to clear previous search results
   };
 
-  const handleLoadPhotos = () => {
-    setPage(prevPage => prevPage + 1); // Increment page number
-    fetchData(searchQuery, page + 1); // Fetch data for the next page
+  const handleLoadPhotos = (fetchData) => {
+    setPage(prevPage => prevPage + 1); 
+    fetchData(searchQuery, page + 1); 
   };
 
   return (
