@@ -1,9 +1,11 @@
+import { fetchFilms } from "./services/api";
 
 function App() {
-return (
-  <div>App</div>
-)
- 
+
+  fetchFilms()
+  return (
+    <div>app</div>
+  );
 }
 
 export default App;
