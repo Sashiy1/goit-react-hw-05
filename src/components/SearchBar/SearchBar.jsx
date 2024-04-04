@@ -3,19 +3,20 @@ import css from "./SearchBar.module.css";
 import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
 
+const validationSchema = Yup.object().shape({
+  query: Yup.string().required("Please enter something"),
+});
+
 function SearchBar({ onSubmit }) {
   return (
     <header className={css.header}>
       <Formik
+        validationSchema={validationSchema}
         initialValues={{ query: "" }}
         onSubmit={(values) => {
-          if (values.query === "") {
-            console.log("here");
-            toast.error("Please enter something");
-          } else {
-           
+         
             onSubmit(values.query);
-          }
+          
         }}
       >
         <Form>
@@ -30,6 +31,11 @@ function SearchBar({ onSubmit }) {
           <button className={css.formButton} type="submit">
             Search
           </button>
+          <ErrorMessage
+            className={css.ErrorMessage}
+            name="query"
+            component="div"
+          />
 
           <Toaster position="top-right" reverseOrder={false} />
         </Form>
@@ -39,3 +45,5 @@ function SearchBar({ onSubmit }) {
 }
 
 export default SearchBar;
+
+//

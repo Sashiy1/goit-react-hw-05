@@ -44,9 +44,9 @@ function App() {
     setPhotos([]); // Reset photos state to clear previous search results
   };
 
-  const handleLoadPhotos = (fetchData) => {
+  const handleLoadPhotos = () => {
     setPage((prevPage) => prevPage + 1);
-    fetchData(searchQuery, page + 1);
+    
   };
 
   
