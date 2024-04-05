@@ -1,10 +1,18 @@
-import { fetchFilms } from "./services/api";
+
+import HomePage from "../HomePage/HomePage";
+import MoviesPage from "../MoviesPage/MoviesPage";
+
+
+
 
 function App() {
 
-  fetchFilms()
+
   return (
-    <div>app</div>
+    <>
+    <HomePage />
+    <MoviesPage />
+    </>
   );
 }
 
