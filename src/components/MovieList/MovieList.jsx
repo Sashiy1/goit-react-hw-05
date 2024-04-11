@@ -1,14 +1,18 @@
-function MovieList({ trendingFilms }) {
-  console.log(trendingFilms);
+import css from "./MovieList.module.css/"
+
+function MovieList({ movies }) {
+  
   return (
     <div>
-      <ul>
-        {trendingFilms !== null &&
-          Array.isArray(trendingFilms) &&
-          trendingFilms.map((film) => {
+      <ul className={css.movieList}>
+        {movies !== null &&
+          Array.isArray(movies) &&
+          movies.map((movie) => {
+            
             return (
-              <li key={film.id}>
-                <p>title: {film.title}</p>{" "}
+              <li key={movie.id}>
+                <a href="">{movie.title}</a>
+                
               </li>
             );
           })}

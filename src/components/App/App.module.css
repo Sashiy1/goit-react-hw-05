@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    gap: 28px;
+    padding: 20px 40px;
+    font-size: 22px;
+    border: 2px solid #a9a9a9;
+    color: #4d4d4d;
+}
+
+/* .nav:hover,  
+.nav:focus {
+    border-color: #4d4d4d;
+    box-shadow: 0 0 5px #4d4d4d;
+} */
+
+
+
+.navLink:hover,  
+.navLink:focus {
+color: #000;
+}
