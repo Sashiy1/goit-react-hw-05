@@ -4,17 +4,29 @@ import MoviesPage from "../../pages/MoviesPage/MoviesPage";
 import css from "./App.module.css";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "../../pages/NotFound/NotFound";
+import clsx from "clsx";
+import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
 
 function App() {
+  const getActiveStyles = ({ isActive }) =>
+    clsx(css.navLink, {
+      [css.active]: isActive,
+    });
+
   return (
     <>
       <nav className={css.nav}>
-        <NavLink to="/"  className={css.navLink} >Home</NavLink>
-        <NavLink to="/movies" className={css.navLink} >Movies</NavLink>
+        <NavLink to="/" className={getActiveStyles}>
+          Home
+        </NavLink>
+        <NavLink to="/movies" className={getActiveStyles}>
+          Movies
+        </NavLink>
       </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

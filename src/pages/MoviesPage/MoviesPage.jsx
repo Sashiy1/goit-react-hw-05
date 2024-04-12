@@ -4,6 +4,7 @@ import searchMovies from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import toast, { Toaster } from "react-hot-toast";
 
 const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +25,9 @@ const MoviesPage = () => {
         setError(false);
         setMovies([]);
         const { data } = await searchMovies(`/search/movie`, query);
-
+        if (data.results.length === 0 && query !== "") {
+          toast.error("No results!");
+          return;}
         setMovies(data.results);
       } catch (error) {
         console.log(error);
@@ -46,6 +49,7 @@ const MoviesPage = () => {
       {isLoading && <Loader />}
       <MovieList movies={movies} />
       {error && <ErrorMessage />}
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.detailsBox {
+    width: 1280px;
+    display: flex;
+    margin-left: 40px;
+    margin-top: 40px;
+    border-bottom: 1px solid #4f4f4f;
+}
+
+.detailsBoxInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 700px;
+    margin-left: 20px;
+}

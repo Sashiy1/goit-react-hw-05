@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import css from "./MovieList.module.css/"
 
 function MovieList({ movies }) {
-  
+
   return (
     <div>
       <ul className={css.movieList}>
@@ -11,8 +12,8 @@ function MovieList({ movies }) {
             
             return (
               <li key={movie.id}>
-                <a href="">{movie.title}</a>
                 
+                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
               </li>
             );
           })}

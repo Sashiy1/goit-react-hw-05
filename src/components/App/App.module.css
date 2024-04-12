@@ -1,21 +1,17 @@
 .nav {
-    display: flex;
-    gap: 28px;
-    padding: 20px 40px;
-    font-size: 22px;
-    border: 2px solid #a9a9a9;
-    color: #4d4d4d;
+  display: flex;
+  gap: 28px;
+  padding: 20px 40px;
+  font-size: 22px;
+  border: 2px solid #a9a9a9;
+  color: #4d4d4d;
+  transition: all 0.3s;
 }
 
-/* .nav:hover,  
-.nav:focus {
-    border-color: #4d4d4d;
-    box-shadow: 0 0 5px #4d4d4d;
-} */
+.active {
+  color: rgb(193, 13, 13);
+}
 
-
-
-.navLink:hover,  
-.navLink:focus {
-color: #000;
+.navLink:hover {
+  color: rgb(193, 13, 13);
 }
