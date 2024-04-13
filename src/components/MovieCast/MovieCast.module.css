@@ -1,0 +1,20 @@
+.castList {
+    margin-left: 40px;
+    max-width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.castPhoto {
+    height: 171px;
+    width: 114px;
+}
+
+.castName {
+    display: block;
+    max-width: 114px;
+    font-size: 11px;
+    text-align: center;
+}

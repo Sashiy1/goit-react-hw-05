@@ -24,15 +24,15 @@ const MoviesPage = () => {
         setIsLoading(true);
         setError(false);
         setMovies([]);
-        const { data } = await searchMovies(`/search/movie`, query);
+        const { data } = await searchMovies(`/search/movie?query=${query}`);
         if (data.results.length === 0 && query !== "") {
           toast.error("No results!");
-          return;}
+          return;
+        }
         setMovies(data.results);
       } catch (error) {
         console.log(error);
         setError(true);
-     
       } finally {
         setIsLoading(false);
       }
@@ -43,8 +43,6 @@ const MoviesPage = () => {
 
   return (
     <div>
-     
-
       <SearchForm onSubmit={handleSearch} />
       {isLoading && <Loader />}
       <MovieList movies={movies} />
