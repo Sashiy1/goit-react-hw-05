@@ -1,35 +1,28 @@
-import { NavLink } from "react-router-dom";
-import HomePage from "../../pages/HomePage/HomePage";
-import MoviesPage from "../../pages/MoviesPage/MoviesPage";
-import css from "./App.module.css";
+import Loader from "../Loader/Loader";
+
 import { Routes, Route } from "react-router-dom";
-import NotFound from "../../pages/NotFound/NotFound";
-import clsx from "clsx";
-import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
+import { Suspense, lazy } from "react";
+import Layout from "../Layout/Layout";
+
+const NotFound = lazy(() => import("../../pages/NotFound/NotFound"));
+const MovieDetailsPage = lazy(() =>
+  import("../../pages/MovieDetailsPage/MovieDetailsPage")
+);
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("../../pages/MoviesPage/MoviesPage"));
 
 function App() {
-  const getActiveStyles = ({ isActive }) =>
-    clsx(css.navLink, {
-      [css.active]: isActive,
-    });
-
   return (
-    <>
-      <nav className={css.nav}>
-        <NavLink to="/" className={getActiveStyles}>
-          Home
-        </NavLink>
-        <NavLink to="/movies" className={getActiveStyles}>
-          Movies
-        </NavLink>
-      </nav>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+    <Layout>
+      <Suspense>
+        <Routes fallback={<Loader />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
 

@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
-import Loader from "../../components/Loader/Loader";
-import searchMovies from "../../services/api";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MovieDetailsPage.module.css";
-import MovieCast from "../../components/MovieCast/MovieCast";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
+import searchMovies from "../../services/api";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
+
+const MovieCast = lazy(() => import("../../components/MovieCast/MovieCast"));
+const MovieReviews = lazy(() =>
+  import("../../components/MovieReviews/MovieReviews")
+);
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -17,7 +21,8 @@ const MovieDetailsPage = () => {
   const location = useLocation();
 
   const backLinkRef = useRef(location.state ?? `/movies`);
-  
+  const defaultImg =
+    "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/09/13/20/26-Petro-Poroshenko-AFP-Getty.jpg";
 
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +48,6 @@ const MovieDetailsPage = () => {
     <>
       {isLoading && <Loader />}
       <Link to={backLinkRef.current}>
-      
         <button className={css.goBackBtn}>
           <IoArrowBackSharp />
         </button>
@@ -52,8 +56,12 @@ const MovieDetailsPage = () => {
       {movie && (
         <>
           <div className={css.detailsBox}>
-            <img
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            <img className={css.detailsBoxPoster}
+              src={ 
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  : defaultImg
+              }
               alt={movie.title}
             />
             <div className={css.detailsBoxInfo}>
@@ -79,10 +87,12 @@ const MovieDetailsPage = () => {
             <Link to="cast">MovieCast</Link>
             <Link to="reviews">MovieReviews</Link>
           </div>
-          <Routes>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Routes>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="reviews" element={<MovieReviews />} />
+            </Routes>
+          </Suspense>
         </>
       )}
 

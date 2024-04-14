@@ -39,3 +39,7 @@
 .goBackBtn:hover {
   color: #b40505;
 }
+
+.detailsBoxPoster{
+  width: 300px;
+}
