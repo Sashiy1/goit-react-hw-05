@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import searchMovies from "../../services/api";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -14,6 +14,10 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+
+  const backLinkRef = useRef(location.state ?? `/movies`);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -38,7 +42,12 @@ const MovieDetailsPage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <button className={css.goBackBtn}><IoArrowBackSharp /></button>
+      <Link to={backLinkRef.current}>
+      
+        <button className={css.goBackBtn}>
+          <IoArrowBackSharp />
+        </button>
+      </Link>
 
       {movie && (
         <>

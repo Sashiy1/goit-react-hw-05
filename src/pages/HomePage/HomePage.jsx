@@ -3,11 +3,14 @@ import searchMovies from "../../../src/services/api";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +34,7 @@ const HomePage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <MovieList movies={movies} />
+      <MovieList location={location} movies={movies} />
       {error && <ErrorMessage />}
     </>
   );
