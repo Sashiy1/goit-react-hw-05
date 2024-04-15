@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import css from "./Layout.module.css";
+import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const Navigation = () => {
   const getActiveStyles = ({ isActive }) =>
     clsx(css.navLink, {
       [css.active]: isActive,
@@ -10,6 +10,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+     
       <nav className={css.nav}>
         <NavLink to="/" className={getActiveStyles}>
           Home
@@ -18,9 +19,9 @@ const Layout = ({ children }) => {
           Movies
         </NavLink>
       </nav>
-      <main>{children}</main>
+ 
     </>
   );
 };
 
-export default Layout;
+export default Navigation;
